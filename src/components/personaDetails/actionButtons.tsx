@@ -1,17 +1,31 @@
 import { useNavigate } from 'react-router-dom';
 import { deletePersona } from '../../api/personasApi';
+import Swal from 'sweetalert2';
 
 interface Props {
     personaId: string;
+    nombre?: string;
+    apellido?: string;
 }
 
-const ActionButtons = ({ personaId }: Props) => {
+const ActionButtons = ({ personaId, nombre, apellido }: Props) => {
     const navigate = useNavigate();
 
     const handleDelete = async () => {
-        const confirmDelete = window.confirm('¿Estás seguro de que deseas borrar esta persona?');
-        if (confirmDelete) {
+        const resultado = await Swal.fire({
+            title: '¿Estás seguro?',
+            text: `Esta acción eliminará a ${nombre ?? 'esta'} ${apellido ?? 'persona'}.`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar',
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6'
+        });
+
+        if (resultado.isConfirmed) {
             await deletePersona(personaId);
+            await Swal.fire('Eliminado', 'La persona ha sido eliminada.', 'success');
             navigate('/personas');
         }
     };

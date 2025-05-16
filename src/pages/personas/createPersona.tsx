@@ -1,7 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import PersonaForm, { PersonaFormData } from './personaForm';
-import { createPersona } from '../api/personasApi';
-import { Persona } from '../model/Persona';
+import { createPersona } from '../../api/personasApi';
+import { Persona } from '../../model/Persona';
+import Swal from 'sweetalert2';
 
 const CreatePersona = () => {
     const navigate = useNavigate();
@@ -14,6 +15,15 @@ const CreatePersona = () => {
         };
 
         await createPersona(personaToCreate);
+
+        await Swal.fire({
+            title: 'Persona creada',
+            text: 'La persona fue creada exitosamente.',
+            icon: 'success',
+            confirmButtonText: 'Aceptar',
+            confirmButtonColor: '#3085d6'
+        });
+
         navigate('/personas');
     };
 

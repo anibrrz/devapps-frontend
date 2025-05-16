@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { Persona } from '../model/Persona';
+import { Auto } from '../model/Auto';
 
 const API_URL = 'http://localhost:3000/personas';
 
@@ -16,6 +17,21 @@ export const getPersonaById = async (id: string): Promise<Persona> => {
 export const createPersona = async (persona: Omit<Persona, 'id'>): Promise<Persona> => {
     const res = await axios.post<Persona>(API_URL, persona);
     return res.data;
+};
+
+export const createAutoParaPersona = async (auto: Omit<Auto, 'id'>): Promise<Auto> => {
+    const res = await fetch(`${API_URL}/${auto.dueñoId}/autos`, {
+        method: 'POST',
+        body: JSON.stringify(auto),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+    if (!res.ok) {
+        const error = await res.json();
+        throw new Error(error.mensaje || 'Error al crear auto');
+    }
+    return res.json();
 };
 
 export const updatePersona = async (id: string, persona: Omit<Persona, 'id' | 'autos'>): Promise<Persona> => {

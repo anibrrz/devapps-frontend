@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Persona } from '../model/Persona';
-import { getPersonaById } from '../api/personasApi';
-import PersonaInfo from '../components/personaDetails/personaInfo';
-import AutosDePersona from '../components/personaDetails/autosDePersona';
-import ActionButtons from '../components/personaDetails/actionButtons';
+import { Persona } from '../../model/Persona';
+import { getPersonaById } from '../../api/personasApi';
+import PersonaInfo from '../../components/personaDetails/personaInfo';
+import AutosDePersona from '../../components/personaDetails/autosDePersona';
+import ActionButtons from '../../components/personaDetails/actionButtons';
 
 const PersonaDetail = () => {
     const { id } = useParams();
@@ -15,7 +15,6 @@ const PersonaDetail = () => {
             getPersonaById(id).then(setPersona);
         }
     }, [id]);
-
     if (!persona) return <div>Cargando...</div>;
 
     return (

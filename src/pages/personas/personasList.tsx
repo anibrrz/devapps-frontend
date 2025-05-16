@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
-import { Persona } from '../model/Persona';
-import { deletePersona, getAllPersonas } from '../api/personasApi';
-import AddButton from '../components/personaList/addPersonaButton';
-import PersonasTable from '../components/personaList/personasTable';
+import { Persona } from '../../model/Persona';
+import { deletePersona, getAllPersonas } from '../../api/personasApi';
+import AddButton from '../../components/personaList/addPersonaButton';
+import PersonasTable from '../../components/personaList/personasTable';
 
 const PersonasList = () => {
     const [personas, setPersonas] = useState<Persona[]>([]);

@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
-import { Genero } from '../model/Persona';
-import CampoTexto from '../components/form/campoTexto';
-import CampoFecha from '../components/form/campoFecha';
-import CampoSelectGenero from '../components/form/campoSelectGenero';
-import CampoCheckbox from '../components/form/campoCheckbox';
+import { Genero } from '../../model/Persona';
+import CampoTexto from '../../components/form/campoTexto';
+import CampoFecha from '../../components/form/campoFecha';
+import CampoSelectGenero from '../../components/form/campoSelectGenero';
+import CampoCheckbox from '../../components/form/campoCheckbox';
 
 export type PersonaFormData = {
     nombre: string;

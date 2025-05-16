@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Persona } from '../model/Persona';
 import PersonaForm, { PersonaFormData } from './personaForm';
-import { getPersonaById, updatePersona } from '../api/personasApi';
+import { getPersonaById, updatePersona } from '../../api/personasApi';
+import { Persona } from '../../model/Persona';
+import Swal from 'sweetalert2';
 
 const EditarPersona = () => {
     const { id } = useParams<{ id: string }>();
@@ -33,6 +34,15 @@ const EditarPersona = () => {
             };
 
             await updatePersona(String(id), personaToUpdate);
+
+            await Swal.fire({
+                title: 'Persona editada',
+                text: 'La persona fue editada exitosamente.',
+                icon: 'success',
+                confirmButtonText: 'Aceptar',
+                confirmButtonColor: '#3085d6'
+            });
+
             navigate('/personas');
         }
     };

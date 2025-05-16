@@ -7,4 +7,7 @@ export interface Auto {
     color: string;
     numeroChasis: string;
     motor: string;
+    dueñoId: string;
 }
+
+export type AutoResumen = Pick<Auto, 'id' | 'marca' | 'modelo' | 'año' | 'patente' | 'dueñoId'>;

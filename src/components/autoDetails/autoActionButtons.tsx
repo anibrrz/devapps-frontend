@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { Auto } from '../../model/Auto';
 import { deleteAuto } from '../../api/autosApi';
 import Swal from 'sweetalert2';
+import { Box, Button } from '@mui/material';
 
 interface Props {
     auto: Auto;
@@ -30,23 +31,29 @@ const AutoActionButtons = ({ auto }: Props) => {
     };
 
     return (
-        <div className="space-x-2 mt-4">
-            <button
-                className="bg-yellow-400 text-black px-4 py-1 rounded"
+        <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2 }}>
+            <Button
+                variant="contained"
                 onClick={() => navigate(`/autos/${auto.id}/editar`)}
+                sx={{ backgroundColor: '#1976d2', '&:hover': { backgroundColor: '#1565c0' } }}
             >
-                Editar
-            </button>
-            <button className="bg-red-500 text-white px-4 py-1 rounded" onClick={handleDelete}>
-                Borrar
-            </button>
-            <button
-                className="bg-gray-400 text-white px-4 py-1 rounded"
+                Editar auto
+            </Button>
+            <Button
+                variant="contained"
+                onClick={handleDelete}
+                sx={{ backgroundColor: '#d32f2f', '&:hover': { backgroundColor: '#c62828' } }}
+            >
+                Borrar auto
+            </Button>
+            <Button
+                variant="contained"
                 onClick={() => navigate(`/personas/${auto.dueñoId}`)}
+                sx={{ backgroundColor: '#4caf50', '&:hover': { backgroundColor: '#43a047' } }}
             >
                 Ver dueño
-            </button>
-        </div>
+            </Button>
+        </Box>
     );
 };
 

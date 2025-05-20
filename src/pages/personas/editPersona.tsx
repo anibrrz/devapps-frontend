@@ -4,6 +4,7 @@ import PersonaForm, { PersonaFormData } from './personaForm';
 import { getPersonaById, updatePersona } from '../../api/personasApi';
 import { Persona } from '../../model/Persona';
 import Swal from 'sweetalert2';
+import { Card, CardContent, Typography } from '@mui/material';
 
 const EditarPersona = () => {
     const { id } = useParams<{ id: string }>();
@@ -48,14 +49,37 @@ const EditarPersona = () => {
     };
 
     return (
-        <div className="p-4">
-            <h1 className="text-2xl font-bold mb-4">Editar Persona</h1>
-            {initialData ? (
-                <PersonaForm initialData={initialData} onSubmit={handleUpdate} buttonLabel="Guardar Cambios" />
-            ) : (
-                <p>Cargando datos...</p>
-            )}
-        </div>
+        <Card
+            sx={{
+                maxWidth: 600,
+                margin: 'auto',
+                mt: 5,
+                boxShadow: 4,
+                borderRadius: 4,
+                backgroundColor: '#f8f9fa'
+            }}
+        >
+            <CardContent sx={{ px: 4, py: 3 }}>
+                <Typography variant="h5" align="center" gutterBottom>
+                    Editar Persona
+                </Typography>
+                {initialData ? (
+                    <PersonaForm
+                        initialData={initialData}
+                        onSubmit={handleUpdate}
+                        buttonLabel="Guardar Cambios"
+                        buttonSx={{
+                            backgroundColor: '#4caf50',
+                            color: '#fff',
+                            mt: 2,
+                            '&:hover': { backgroundColor: '#43a047' }
+                        }}
+                    />
+                ) : (
+                    <Typography align="center">Cargando datos...</Typography>
+                )}
+            </CardContent>
+        </Card>
     );
 };
 

@@ -1,4 +1,5 @@
 import { Persona } from '../../model/Persona';
+import { Box, Typography } from '@mui/material';
 
 interface Props {
     persona: Persona;
@@ -6,26 +7,26 @@ interface Props {
 
 const PersonaInfo = ({ persona }: Props) => {
     return (
-        <div className="space-y-2">
-            <div>
+        <Box sx={{ display: 'grid', gap: 1 }}>
+            <Typography>
                 <strong>Nombre:</strong> {persona.nombre}
-            </div>
-            <div>
+            </Typography>
+            <Typography>
                 <strong>Apellido:</strong> {persona.apellido}
-            </div>
-            <div>
+            </Typography>
+            <Typography>
                 <strong>DNI:</strong> {persona.dni}
-            </div>
-            <div>
+            </Typography>
+            <Typography>
                 <strong>Fecha de nacimiento:</strong> {new Date(persona.fechaNacimiento).toLocaleDateString()}
-            </div>
-            <div>
+            </Typography>
+            <Typography>
                 <strong>Género:</strong> {persona.genero}
-            </div>
-            <div>
+            </Typography>
+            <Typography>
                 <strong>Donante:</strong> {persona.donante ? 'Sí' : 'No'}
-            </div>
-        </div>
+            </Typography>
+        </Box>
     );
 };
 

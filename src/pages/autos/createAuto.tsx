@@ -1,8 +1,9 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import { Auto } from '../../model/Auto';
 import AutoForm, { AutoFormData } from './autoForm';
 import { createAutoParaPersona } from '../../api/personasApi';
+import { Auto } from '../../model/Auto';
 import Swal from 'sweetalert2';
+import { Card, CardContent, Typography } from '@mui/material';
 
 const CreateAuto = () => {
     const { personaId } = useParams<{ personaId: string }>();
@@ -26,14 +27,37 @@ const CreateAuto = () => {
             confirmButtonText: 'Aceptar',
             confirmButtonColor: '#3085d6'
         });
+
         navigate(`/personas/${personaId}`);
     };
 
     return (
-        <div className="p-4">
-            <h2 className="text-2xl font-bold mb-4">Nuevo Auto</h2>
-            <AutoForm onSubmit={handleCreate} buttonLabel="Crear" />
-        </div>
+        <Card
+            sx={{
+                maxWidth: 600,
+                margin: 'auto',
+                mt: 5,
+                boxShadow: 4,
+                borderRadius: 4,
+                backgroundColor: '#f8f9fa'
+            }}
+        >
+            <CardContent sx={{ px: 4, py: 3 }}>
+                <Typography variant="h5" align="center" gutterBottom>
+                    Nuevo Auto
+                </Typography>
+                <AutoForm
+                    onSubmit={handleCreate}
+                    buttonLabel="Crear"
+                    buttonSx={{
+                        backgroundColor: '#4caf50',
+                        color: '#fff',
+                        mt: 2,
+                        '&:hover': { backgroundColor: '#43a047' }
+                    }}
+                />
+            </CardContent>
+        </Card>
     );
 };
 

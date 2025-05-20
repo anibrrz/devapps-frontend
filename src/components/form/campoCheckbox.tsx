@@ -1,3 +1,5 @@
+import { Checkbox, FormControlLabel } from '@mui/material';
+
 interface Props {
     label: string;
     name: string;
@@ -6,10 +8,7 @@ interface Props {
 }
 
 const CampoCheckbox = ({ label, name, checked, onChange }: Props) => (
-    <div className="flex items-center gap-2">
-        <label htmlFor={name}>{label}</label>
-        <input type="checkbox" id={name} name={name} checked={checked} onChange={onChange} />
-    </div>
+    <FormControlLabel control={<Checkbox checked={checked} onChange={onChange} name={name} />} label={label} />
 );
 
 export default CampoCheckbox;

@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
-import { deletePersona } from '../../api/personasApi';
+import { Box, Button } from '@mui/material';
 import Swal from 'sweetalert2';
+import { deletePersona } from '../../api/personasApi';
 
 interface Props {
     personaId: string;
@@ -8,40 +9,56 @@ interface Props {
     apellido?: string;
 }
 
-const ActionButtons = ({ personaId, nombre, apellido }: Props) => {
+const ActionButtons = ({ personaId }: Props) => {
     const navigate = useNavigate();
 
-    const handleDelete = async () => {
-        const resultado = await Swal.fire({
+    const handleEditar = () => {
+        navigate(`/personas/${personaId}/editar`);
+    };
+
+    const handleEliminar = () => {
+        Swal.fire({
             title: '¿Estás seguro?',
-            text: `Esta acción eliminará a ${nombre ?? 'esta'} ${apellido ?? 'persona'}.`,
+            text: 'Esta acción no se puede deshacer.',
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonText: 'Sí, eliminar',
-            cancelButtonText: 'Cancelar',
             confirmButtonColor: '#d33',
-            cancelButtonColor: '#3085d6'
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Sí, borrar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                deletePersona(personaId).then(() => {
+                    Swal.fire('Eliminado', 'La persona ha sido eliminada.', 'success');
+                    navigate('/personas');
+                });
+            }
         });
-
-        if (resultado.isConfirmed) {
-            await deletePersona(personaId);
-            await Swal.fire('Eliminado', 'La persona ha sido eliminada.', 'success');
-            navigate('/personas');
-        }
     };
 
     return (
-        <div className="space-x-2 mt-4">
-            <button
-                className="bg-yellow-400 text-black px-4 py-1 rounded"
-                onClick={() => navigate(`/personas/${personaId}/editar`)}
+        <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2 }}>
+            <Button
+                variant="contained"
+                onClick={handleEditar}
+                sx={{
+                    backgroundColor: '#1976d2',
+                    '&:hover': { backgroundColor: '#1565c0' }
+                }}
             >
-                Editar
-            </button>
-            <button className="bg-red-500 text-white px-4 py-1 rounded" onClick={handleDelete}>
-                Borrar
-            </button>
-        </div>
+                Editar persona
+            </Button>
+            <Button
+                variant="contained"
+                onClick={handleEliminar}
+                sx={{
+                    backgroundColor: '#d32f2f',
+                    '&:hover': { backgroundColor: '#c62828' }
+                }}
+            >
+                Borrar persona
+            </Button>
+        </Box>
     );
 };
 

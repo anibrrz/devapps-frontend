@@ -4,6 +4,7 @@ import { getAutoById, updateAuto } from '../../api/autosApi';
 import { Auto } from '../../model/Auto';
 import AutoForm, { AutoFormData } from './autoForm';
 import Swal from 'sweetalert2';
+import { Card, CardContent, Typography } from '@mui/material';
 
 const EditAuto = () => {
     const { id } = useParams<{ id: string }>();
@@ -13,8 +14,7 @@ const EditAuto = () => {
     useEffect(() => {
         if (id) {
             getAutoById(id).then((data: Auto) => {
-                console.log('Auto obtenido para editar:', data);
-                setInitialData({
+                const formattedData: AutoFormData = {
                     marca: data.marca,
                     modelo: data.modelo,
                     año: data.año.toString(),
@@ -22,7 +22,8 @@ const EditAuto = () => {
                     color: data.color,
                     numeroChasis: data.numeroChasis,
                     motor: data.motor
-                });
+                };
+                setInitialData(formattedData);
             });
         }
     }, [id]);
@@ -36,10 +37,16 @@ const EditAuto = () => {
                 año: parseInt(data.año, 10)
             };
 
-            console.log('Actualizando auto con id:', id, autoToUpdate);
             await updateAuto(id, autoToUpdate);
 
-            await Swal.fire('Actualizado', 'El auto fue actualizado exitosamente', 'success');
+            await Swal.fire({
+                title: 'Auto editado',
+                text: 'El auto fue editado exitosamente.',
+                icon: 'success',
+                confirmButtonText: 'Aceptar',
+                confirmButtonColor: '#3085d6'
+            });
+
             navigate('/autos');
         } catch (error) {
             console.error('Error al actualizar el auto:', error);
@@ -48,14 +55,37 @@ const EditAuto = () => {
     };
 
     return (
-        <div className="p-4">
-            <h2 className="text-2xl font-bold mb-4">Editar Auto</h2>
-            {initialData ? (
-                <AutoForm initialData={initialData} onSubmit={handleUpdate} buttonLabel="Guardar Cambios" />
-            ) : (
-                <p>Cargando datos...</p>
-            )}
-        </div>
+        <Card
+            sx={{
+                maxWidth: 600,
+                margin: 'auto',
+                mt: 5,
+                boxShadow: 4,
+                borderRadius: 4,
+                backgroundColor: '#f8f9fa'
+            }}
+        >
+            <CardContent sx={{ px: 4, py: 3 }}>
+                <Typography variant="h5" align="center" gutterBottom>
+                    Editar Auto
+                </Typography>
+                {initialData ? (
+                    <AutoForm
+                        initialData={initialData}
+                        onSubmit={handleUpdate}
+                        buttonLabel="Guardar Cambios"
+                        buttonSx={{
+                            backgroundColor: '#4caf50',
+                            color: '#fff',
+                            mt: 2,
+                            '&:hover': { backgroundColor: '#43a047' }
+                        }}
+                    />
+                ) : (
+                    <Typography align="center">Cargando datos...</Typography>
+                )}
+            </CardContent>
+        </Card>
     );
 };
 

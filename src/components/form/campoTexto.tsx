@@ -1,3 +1,5 @@
+import { TextField } from '@mui/material';
+
 interface Props {
     label: string;
     name: string;
@@ -7,17 +9,15 @@ interface Props {
 }
 
 const CampoTexto = ({ label, name, value, onChange, required = false }: Props) => (
-    <div>
-        <label className="block">{label}</label>
-        <input
-            type="text"
-            name={name}
-            value={value}
-            onChange={onChange}
-            className="border px-2 py-1 w-full"
-            required={required}
-        />
-    </div>
+    <TextField
+        label={label}
+        name={name}
+        value={value}
+        onChange={onChange}
+        required={required}
+        fullWidth
+        margin="normal"
+    />
 );
 
 export default CampoTexto;

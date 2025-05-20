@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import CampoTexto from '../../components/form/campoTexto';
+import { Button } from '@mui/material';
+import { SxProps, Theme } from '@mui/material/styles';
 
 export type AutoFormData = {
     marca: string;
@@ -15,9 +17,10 @@ interface Props {
     initialData?: AutoFormData;
     onSubmit: (data: AutoFormData) => void;
     buttonLabel: string;
+    buttonSx?: SxProps<Theme>;
 }
 
-const AutoForm = ({ initialData, onSubmit, buttonLabel }: Props) => {
+const AutoForm = ({ initialData, onSubmit, buttonLabel, buttonSx }: Props) => {
     const [auto, setAuto] = useState<AutoFormData>({
         marca: '',
         modelo: '',
@@ -62,9 +65,17 @@ const AutoForm = ({ initialData, onSubmit, buttonLabel }: Props) => {
                 required
             />
             <CampoTexto label="Motor" name="motor" value={auto.motor} onChange={handleChange} required />
-            <button type="submit" className="bg-green-500 text-white px-4 py-2 rounded">
+
+            <Button
+                type="submit"
+                variant="contained"
+                sx={{
+                    width: '100%',
+                    ...buttonSx
+                }}
+            >
                 {buttonLabel}
-            </button>
+            </Button>
         </form>
     );
 };

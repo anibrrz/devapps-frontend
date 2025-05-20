@@ -1,4 +1,5 @@
 import { Auto } from '../../model/Auto';
+import { Box, Typography } from '@mui/material';
 
 interface Props {
     auto: Auto;
@@ -6,29 +7,29 @@ interface Props {
 
 const AutoInfo = ({ auto }: Props) => {
     return (
-        <div className="space-y-2">
-            <div>
+        <Box sx={{ display: 'grid', gap: 1 }}>
+            <Typography>
                 <strong>Marca:</strong> {auto.marca}
-            </div>
-            <div>
+            </Typography>
+            <Typography>
                 <strong>Modelo:</strong> {auto.modelo}
-            </div>
-            <div>
+            </Typography>
+            <Typography>
                 <strong>Año:</strong> {auto.año}
-            </div>
-            <div>
+            </Typography>
+            <Typography>
+                <strong>Color:</strong> {auto.color}
+            </Typography>
+            <Typography>
                 <strong>Patente:</strong> {auto.patente}
-            </div>
-            <div>
-                <strong>Año:</strong> {auto.color}
-            </div>
-            <div>
-                <strong>Año:</strong> {auto.numeroChasis}
-            </div>
-            <div>
-                <strong>Año:</strong> {auto.motor}
-            </div>
-        </div>
+            </Typography>
+            <Typography>
+                <strong>Número de chasis:</strong> {auto.numeroChasis}
+            </Typography>
+            <Typography>
+                <strong>Motor:</strong> {auto.motor}
+            </Typography>
+        </Box>
     );
 };
 

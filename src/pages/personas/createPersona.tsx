@@ -3,6 +3,7 @@ import PersonaForm, { PersonaFormData } from './personaForm';
 import { createPersona } from '../../api/personasApi';
 import { Persona } from '../../model/Persona';
 import Swal from 'sweetalert2';
+import { Card, CardContent, Typography } from '@mui/material';
 
 const CreatePersona = () => {
     const navigate = useNavigate();
@@ -28,10 +29,32 @@ const CreatePersona = () => {
     };
 
     return (
-        <div className="p-4">
-            <h2 className="text-2xl font-bold mb-4">Nueva Persona</h2>
-            <PersonaForm onSubmit={handleCreate} buttonLabel="Crear" />
-        </div>
+        <Card
+            sx={{
+                maxWidth: 600,
+                margin: 'auto',
+                mt: 5,
+                boxShadow: 4,
+                borderRadius: 4,
+                backgroundColor: '#f8f9fa'
+            }}
+        >
+            <CardContent sx={{ px: 4, py: 3 }}>
+                <Typography variant="h5" align="center" gutterBottom>
+                    Nueva Persona
+                </Typography>
+                <PersonaForm
+                    onSubmit={handleCreate}
+                    buttonLabel="Crear"
+                    buttonSx={{
+                        backgroundColor: '#4caf50',
+                        color: '#fff',
+                        mt: 2,
+                        '&:hover': { backgroundColor: '#43a047' }
+                    }}
+                />
+            </CardContent>
+        </Card>
     );
 };
 

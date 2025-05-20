@@ -1,5 +1,16 @@
 import { useNavigate } from 'react-router-dom';
 import { Auto } from '../../model/Auto';
+import {
+    Box,
+    Button,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
+    Typography
+} from '@mui/material';
 
 interface Props {
     autos: Auto[];
@@ -14,32 +25,56 @@ const AutosDePersona = ({ autos, personaId }: Props) => {
     };
 
     return (
-        <div>
-            <h2 className="text-xl font-semibold">Autos</h2>
-            <button className="bg-green-500 text-white px-3 py-1 rounded mb-2" onClick={handleAgregarAuto}>
-                Agregar nuevo
-            </button>
-            <table className="w-full border">
-                <thead>
-                    <tr>
-                        <th className="border p-2">Patente</th>
-                        <th className="border p-2">Marca</th>
-                        <th className="border p-2">Modelo</th>
-                        <th className="border p-2">Año</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {autos.map((auto) => (
-                        <tr key={auto.id} className="border-t">
-                            <td className="p-2">{auto.patente}</td>
-                            <td className="p-2">{auto.marca}</td>
-                            <td className="p-2">{auto.modelo}</td>
-                            <td className="p-2">{auto.año}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
+        <Box sx={{ mt: 4, mb: 4 }}>
+            <Typography variant="h6" align="center" gutterBottom>
+                Autos
+            </Typography>
+
+            <Box display="flex" justifyContent="center" mb={2}>
+                <Button
+                    variant="contained"
+                    onClick={handleAgregarAuto}
+                    sx={{
+                        backgroundColor: '#4caf50',
+                        color: '#fff',
+                        '&:hover': { backgroundColor: '#43a047' }
+                    }}
+                >
+                    Agregar auto
+                </Button>
+            </Box>
+
+            <TableContainer>
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>
+                                <strong>Patente</strong>
+                            </TableCell>
+                            <TableCell>
+                                <strong>Marca</strong>
+                            </TableCell>
+                            <TableCell>
+                                <strong>Modelo</strong>
+                            </TableCell>
+                            <TableCell>
+                                <strong>Año</strong>
+                            </TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {autos.map((auto) => (
+                            <TableRow key={auto.id}>
+                                <TableCell>{auto.patente}</TableCell>
+                                <TableCell>{auto.marca}</TableCell>
+                                <TableCell>{auto.modelo}</TableCell>
+                                <TableCell>{auto.año}</TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+        </Box>
     );
 };
 

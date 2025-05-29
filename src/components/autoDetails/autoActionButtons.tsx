@@ -24,7 +24,7 @@ const AutoActionButtons = ({ auto }: Props) => {
         });
 
         if (result.isConfirmed) {
-            await deleteAuto(auto.id);
+            await deleteAuto(auto._id);
             await Swal.fire('Eliminado', 'El auto ha sido eliminado.', 'success');
             navigate('/autos');
         }
@@ -34,7 +34,7 @@ const AutoActionButtons = ({ auto }: Props) => {
         <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2 }}>
             <Button
                 variant="contained"
-                onClick={() => navigate(`/autos/${auto.id}/editar`)}
+                onClick={() => navigate(`/autos/${auto._id}/editar`)}
                 sx={{ backgroundColor: '#1976d2', '&:hover': { backgroundColor: '#1565c0' } }}
             >
                 Editar auto

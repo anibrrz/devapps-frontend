@@ -9,7 +9,7 @@ const CreatePersona = () => {
     const navigate = useNavigate();
 
     const handleCreate = async (data: PersonaFormData) => {
-        const personaToCreate: Omit<Persona, 'id'> = {
+        const personaToCreate: Omit<Persona, '_id'> = {
             ...data,
             fechaNacimiento: new Date(data.fechaNacimiento),
             autos: []

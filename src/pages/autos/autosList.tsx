@@ -40,8 +40,8 @@ const AutosList = () => {
                 cancelButtonColor: '#3085d6'
             }).then(async (resultado) => {
                 if (resultado.isConfirmed) {
-                    await deleteAuto(autoAEliminar.id);
-                    setAutos((prev) => prev.filter((a) => a.id !== autoAEliminar.id));
+                    await deleteAuto(autoAEliminar._id);
+                    setAutos((prev) => prev.filter((a) => a._id !== autoAEliminar._id));
                     Swal.fire('Eliminado', 'El auto fue eliminado exitosamente.', 'success');
                 }
                 setAutoAEliminar(null);
@@ -79,7 +79,7 @@ const AutosList = () => {
                         </TableHead>
                         <TableBody>
                             {autos.map((auto) => (
-                                <TableRow key={auto.id}>
+                                <TableRow key={auto._id}>
                                     <TableCell>{auto.patente}</TableCell>
                                     <TableCell>{auto.marca}</TableCell>
                                     <TableCell>{auto.modelo}</TableCell>
@@ -89,7 +89,7 @@ const AutosList = () => {
                                             <Button
                                                 size="small"
                                                 variant="contained"
-                                                onClick={() => navigate(`/autos/${auto.id}`)}
+                                                onClick={() => navigate(`/autos/${auto._id}`)}
                                                 sx={{
                                                     backgroundColor: '#3085d6',
                                                     color: '#fff',
@@ -101,7 +101,7 @@ const AutosList = () => {
                                             <Button
                                                 size="small"
                                                 variant="contained"
-                                                onClick={() => navigate(`/autos/${auto.id}/editar`)}
+                                                onClick={() => navigate(`/autos/${auto._id}/editar`)}
                                                 sx={{
                                                     backgroundColor: '#ffe066',
                                                     color: '#000',

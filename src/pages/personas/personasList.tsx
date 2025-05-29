@@ -40,8 +40,8 @@ const PersonasList = () => {
                 cancelButtonColor: '#3085d6'
             }).then(async (resultado) => {
                 if (resultado.isConfirmed) {
-                    await deletePersona(personaAEliminar.id);
-                    setPersonas((prev) => prev.filter((p) => p.id !== personaAEliminar.id));
+                    await deletePersona(personaAEliminar._id);
+                    setPersonas((prev) => prev.filter((p) => p._id !== personaAEliminar._id));
                     Swal.fire('Eliminado', 'La persona ha sido eliminada.', 'success');
                 }
                 setPersonaAEliminar(null);
@@ -89,33 +89,25 @@ const PersonasList = () => {
                         </TableHead>
                         <TableBody>
                             {personas.map((persona) => (
-                                <TableRow key={persona.id}>
+                                <TableRow key={persona._id}>
                                     <TableCell>{persona.dni}</TableCell>
                                     <TableCell>{persona.nombre}</TableCell>
                                     <TableCell>{persona.apellido}</TableCell>
                                     <TableCell>
-                                        <Stack direction="row" spacing={3}>
+                                        <Stack direction="row" spacing={2}>
                                             <Button
                                                 size="small"
                                                 variant="contained"
-                                                onClick={() => navigate(`/personas/${persona.id}`)}
-                                                sx={{
-                                                    backgroundColor: '#3085d6',
-                                                    color: '#fff',
-                                                    '&:hover': { backgroundColor: '#2c75c1' }
-                                                }}
+                                                onClick={() => navigate(`/personas/${persona._id}`)}
+                                                sx={{ backgroundColor: '#3085d6', color: '#fff' }}
                                             >
                                                 Ver
                                             </Button>
                                             <Button
                                                 size="small"
                                                 variant="contained"
-                                                onClick={() => navigate(`/personas/${persona.id}/editar`)}
-                                                sx={{
-                                                    backgroundColor: '#ffe066',
-                                                    color: '#000',
-                                                    '&:hover': { backgroundColor: '#ffdb4d' }
-                                                }}
+                                                onClick={() => navigate(`/personas/${persona._id}/editar`)}
+                                                sx={{ backgroundColor: '#ffe066', color: '#000' }}
                                             >
                                                 Editar
                                             </Button>
@@ -123,11 +115,7 @@ const PersonasList = () => {
                                                 size="small"
                                                 variant="contained"
                                                 onClick={() => setPersonaAEliminar(persona)}
-                                                sx={{
-                                                    backgroundColor: '#d33',
-                                                    color: '#fff',
-                                                    '&:hover': { backgroundColor: '#b22e2e' }
-                                                }}
+                                                sx={{ backgroundColor: '#d33', color: '#fff' }}
                                             >
                                                 Borrar
                                             </Button>

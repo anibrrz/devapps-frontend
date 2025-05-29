@@ -1,5 +1,5 @@
 export interface Auto {
-    id: string;
+    _id: string;
     marca: string;
     modelo: string;
     año: number;
@@ -10,4 +10,4 @@ export interface Auto {
     dueñoId: string;
 }
 
-export type AutoResumen = Pick<Auto, 'id' | 'marca' | 'modelo' | 'año' | 'patente' | 'dueñoId'>;
+export type AutoResumen = Pick<Auto, '_id' | 'marca' | 'modelo' | 'año' | 'patente' | 'dueñoId'>;

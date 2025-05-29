@@ -6,7 +6,6 @@ const Layout = ({ children }: { children: ReactNode }) => {
         <Box
             sx={{
                 minHeight: '80vh',
-                backgroundColor: '#fff8e1',
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',

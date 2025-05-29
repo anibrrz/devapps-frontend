@@ -12,7 +12,7 @@ const CreateAuto = () => {
     const handleCreate = async (data: AutoFormData) => {
         if (!personaId) return;
 
-        const autoToCreate: Omit<Auto, 'id'> = {
+        const autoToCreate: Omit<Auto, '_id'> = {
             ...data,
             año: parseInt(data.año, 10),
             dueñoId: personaId

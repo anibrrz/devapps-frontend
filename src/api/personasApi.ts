@@ -14,12 +14,12 @@ export const getPersonaById = async (id: string): Promise<Persona> => {
     return res.data;
 };
 
-export const createPersona = async (persona: Omit<Persona, 'id'>): Promise<Persona> => {
+export const createPersona = async (persona: Omit<Persona, '_id'>): Promise<Persona> => {
     const res = await axios.post<Persona>(API_URL, persona);
     return res.data;
 };
 
-export const createAutoParaPersona = async (auto: Omit<Auto, 'id'>): Promise<Auto> => {
+export const createAutoParaPersona = async (auto: Omit<Auto, '_id'>): Promise<Auto> => {
     const res = await fetch(`${API_URL}/${auto.dueñoId}/autos`, {
         method: 'POST',
         body: JSON.stringify(auto),
@@ -34,7 +34,7 @@ export const createAutoParaPersona = async (auto: Omit<Auto, 'id'>): Promise<Aut
     return res.json();
 };
 
-export const updatePersona = async (id: string, persona: Omit<Persona, 'id' | 'autos'>): Promise<Persona> => {
+export const updatePersona = async (id: string, persona: Omit<Persona, '_id' | 'autos'>): Promise<Persona> => {
     const res = await axios.put<Persona>(`${API_URL}/${id}`, persona);
     return res.data;
 };

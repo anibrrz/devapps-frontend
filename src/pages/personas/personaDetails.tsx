@@ -34,11 +34,11 @@ const PersonaDetail = () => {
 
                     <Divider sx={{ my: 2 }} />
 
-                    <AutosDePersona autos={persona.autos ?? []} personaId={persona.id} />
+                    <AutosDePersona autos={persona.autos ?? []} personaId={persona._id} />
 
                     <Divider sx={{ my: 2 }} />
 
-                    <ActionButtons personaId={persona.id} nombre={persona.nombre} apellido={persona.apellido} />
+                    <ActionButtons personaId={persona._id} nombre={persona.nombre} apellido={persona.apellido} />
                 </Paper>
             </Box>
         </Layout>

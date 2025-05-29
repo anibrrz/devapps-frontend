@@ -64,7 +64,7 @@ const AutosDePersona = ({ autos, personaId }: Props) => {
                     </TableHead>
                     <TableBody>
                         {autos.map((auto) => (
-                            <TableRow key={auto.id}>
+                            <TableRow key={auto._id}>
                                 <TableCell>{auto.patente}</TableCell>
                                 <TableCell>{auto.marca}</TableCell>
                                 <TableCell>{auto.modelo}</TableCell>

@@ -11,7 +11,7 @@ export interface Persona {
     nombre: string;
     apellido: string;
     dni: string;
-    fechaNacimiento: Date;
+    fechaNacimiento: string;
     genero: Genero;
     donante: boolean;
     autos: Auto[];

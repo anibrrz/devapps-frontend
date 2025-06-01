@@ -18,8 +18,9 @@ const PersonaInfo = ({ persona }: Props) => {
                 <strong>DNI:</strong> {persona.dni}
             </Typography>
             <Typography>
-                <strong>Fecha de nacimiento:</strong> {new Date(persona.fechaNacimiento).toLocaleDateString()}
+                <strong>Fecha de nacimiento:</strong> {persona.fechaNacimiento.split('T')[0]}
             </Typography>
+
             <Typography>
                 <strong>Género:</strong> {persona.genero}
             </Typography>

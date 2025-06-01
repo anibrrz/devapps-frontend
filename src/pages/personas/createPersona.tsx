@@ -11,7 +11,7 @@ const CreatePersona = () => {
     const handleCreate = async (data: PersonaFormData) => {
         const personaToCreate: Omit<Persona, '_id'> = {
             ...data,
-            fechaNacimiento: new Date(data.fechaNacimiento),
+            fechaNacimiento: data.fechaNacimiento,
             autos: []
         };
 

@@ -31,7 +31,7 @@ const EditarPersona = () => {
         if (id) {
             const personaToUpdate = {
                 ...data,
-                fechaNacimiento: new Date(data.fechaNacimiento)
+                fechaNacimiento: data.fechaNacimiento
             };
 
             await updatePersona(String(id), personaToUpdate);
